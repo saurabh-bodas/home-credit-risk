@@ -7,23 +7,29 @@ Founded in the Czech Republic, Home Credit strives to offer loans to individuals
 
 Home Credit provided data about its clients through a Kaggle compeition. We used Python and PySpark on the databricks platform for model building and evaluation, while Tableau was used for data visualisation. 
 
+We analysed the impact of gender, age, income, education level, house ownership of Home Credit's customers on whether they defaulted on their payments. 
+
 Note: 1 represents that the individual defaulted on the loan
 
 ## Model building & evaluation
 
+
+
 Following extensive exploratory data analysis and visualization, the following models were deployed: 
 
-i. Logistic regression (AUC score: 0.63)
+i. Logistic regression (AUC score: 0.68, F1-score: 0.1)
 
-ii. Catboost (AUC score: 0.69)
+ii. Catboost (AUC score: 0.55, F1 score: 0.14)
 
-iii. Random Forest (AUC score: 0.65)
+iii. Random Forest (AUC score: 0.65, 0.0012)
 
-Because the dataset was expectedly highly imbalanced, SMOTE resampling was tried out, but did not yield favourable results. The Area Under the Receiver Operating Characteristic curve (AU-ROC score) was the primary metric used for evaluation. 
+iv. Random Forest with SMOTE resampling method (AUC score: 0.63, 0.0004)
+
+Because the dataset was expectedly highly imbalanced (8% positive/defaulters), SMOTE resampling was tried out, but did not yield favourable results. The Area Under the Receiver Operating Characteristic curve (AU-ROC score) was the primary metric used for evaluation. 
 
 The AUROC score was used instead of the confusion matrix because the data is highly imbalanced - the confusion matrix would report a high enough accuracy (>80%) simply due to the nature of the data (i.e. most individuals do not default). 
 
-Another important point is that false negatives (i.e. classifying loan defaulters as non-defaulters and extending them credit) are the most dangerous (expensive to the company) and care should be taken to avoid them at all times. 
+Another important point is that false negatives (i.e. classifying loan defaulters as non-defaulters and extending them credit) are the most dangerous (expensive to the company) and care should be taken to avoid them at all times. Thus, a more conservative estimate was set for these models to classify them as potential defaulters.
 
 ## Model selection
 
@@ -33,13 +39,11 @@ i. shorter training time (especially since we had a large dataset and limited pr
 
 ii. interpretability (provides feature importance and the direction of features i.e. positive/negative)
 
-iii. allows us to set the probability threshold for positive and negative outcomes 
-
-iv. provides us with conditional probabilities
+iv. provides us with reliable estimates of conditional probabilities compared to random forests
 
 ## Conclusion
 
-Feature engineering on more variables, dimensionality reduction, and more complex models like the XGBoost and neural networks could be implemented to further improve model performance (limited resources of the Databricks community edition inhibited our efforts). 
+Feature engineering on more variables, better management of missing data, dimensionality reduction, and more complex models like the XGBoost and neural networks could be implemented to further improve model performance (limited resources of the Databricks community edition inhibited our efforts). 
 
 
 
