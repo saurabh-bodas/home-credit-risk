@@ -17,13 +17,13 @@ Note: 1 represents that the individual defaulted on the loan
 
 Following extensive exploratory data analysis and visualization, the following models were deployed: 
 
-i. Logistic regression (AUC score: 0.68, F1-score: 0.1)
+i. Logistic regression (AUC score: 0.68)
 
-ii. Catboost (AUC score: 0.55, F1 score: 0.14)
+ii. Catboost (AUC score: 0.55)
 
-iii. Random Forest (AUC score: 0.65, 0.0012)
+iii. Random Forest (AUC score: 0.65)
 
-iv. Random Forest with SMOTE resampling method (AUC score: 0.63, 0.0004)
+iv. Random Forest with SMOTE resampling method (AUC score: 0.63)
 
 Because the dataset was expectedly highly imbalanced (8% positive/defaulters), SMOTE resampling was tried out, but did not yield favourable results. The Area Under the Receiver Operating Characteristic curve (AU-ROC score) was the primary metric used for evaluation. 
 
